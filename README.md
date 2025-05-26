@@ -5,6 +5,7 @@ This repository contains implementations of various design patterns in Java. Cur
 1. [Factory Pattern](#factory-pattern)
 2. [Factory Method Pattern](#factory-method-pattern)
 3. [Abstract Factory Pattern](#abstract-factory-pattern)
+4. [Strategy Pattern](#strategy-pattern)
 
 ## Factory Pattern
 
@@ -66,3 +67,38 @@ ABSTRACT FACTORY PATTERN VS FACTORY METHOD PATTERN:
 2. Factory Method uses inheritance (subclassing), Abstract Factory uses composition
 3. Factory Method focuses on creating one product, Abstract Factory ensures product compatibility
 4. Factory Method is simpler but less flexible, Abstract Factory is more complex but more powerful
+
+## Strategy Pattern
+
+### Overview
+The Strategy Pattern is a behavioral design pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable. It lets the algorithm vary independently from clients that use it.
+
+### Key Differences from Other Patterns
+1. **Factory Pattern**: Creates objects without specifying the exact class.  
+   **Strategy Pattern**: Defines a family of interchangeable algorithms.
+
+2. **Factory Method Pattern**: Lets subclasses decide which class to instantiate.  
+   **Strategy Pattern**: Lets clients choose which algorithm to use.
+
+3. **Decorator Pattern**: Adds responsibilities to objects dynamically.  
+   **Strategy Pattern**: Swaps entire algorithms dynamically.
+
+### Implementation
+The Strategy Pattern implementation in this repository uses the example of a parking lot payment system:
+
+- `PaymentStrategy` interface defines the common method for all payment strategies
+- Concrete strategy classes (`CreditCardPaymentStrategy`, `CashPaymentStrategy`, `MobilePaymentStrategy`) implement the `PaymentStrategy` interface
+- `ParkingLot` class acts as the context that maintains a reference to a `PaymentStrategy` and delegates the payment processing to the selected strategy
+
+### When to Use Strategy Pattern
+- When you want to define a family of algorithms (payment methods)
+- When you need to switch algorithms at runtime (change payment method)
+- When you want to isolate the algorithm implementation from the code that uses it
+- When you have multiple conditional statements to select different behaviors
+
+STRATEGY PATTERN KEY POINTS:
+1. Defines a family of algorithms (CreditCardPaymentStrategy, CashPaymentStrategy, MobilePaymentStrategy)
+2. Encapsulates each algorithm in its own class
+3. Makes the algorithms interchangeable at runtime
+4. Lets the algorithm vary independently from clients that use it
+5. Eliminates conditional statements for algorithm selection
